@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { Image, View, Text, StyleSheet, ScrollView } from "react-native";
 import { SafeScreen } from "@/components/template";
 import { useTheme } from "@/theme";
 import { ApplicationScreenProps } from "@/types/navigation";
@@ -17,59 +17,100 @@ export default function StudentDetail({
     queryKey: ["user", id],
     queryFn: () => getUser(id),
   });
-
   return (
-    <SafeScreen>
-      <ScrollView contentContainerStyle={styles.container}>
-        <Text style={[styles.label, fonts.bold]}>Student Details</Text>
-        <View style={styles.detailContainer}>
-          <Text style={styles.label}>Email:</Text>
-          <Text style={styles.value}>{data?.email}</Text>
-        </View>
-        <View style={styles.detailContainer}>
-          <Text style={styles.label}>Name:</Text>
-          <Text style={styles.value}>{data?.name}</Text>
-        </View>
-        <View style={styles.detailContainer}>
-          <Text style={styles.label}>Date of Birth:</Text>
-          <Text style={styles.value}>
-            {data?.dob ? dayjs(data?.dob).format("DD MMM YYYY") : "-"}
-          </Text>
-        </View>
-        <View style={styles.detailContainer}>
-          <Text style={styles.label}>data Number:</Text>
-          <Text style={styles.value}>{data?.nisn ?? "-"}</Text>
-        </View>
-        <View style={styles.detailContainer}>
-          <Text style={styles.label}>Address:</Text>
-          <Text style={styles.value}>{data?.address ?? "-"}</Text>
-        </View>
-        <View style={styles.detailContainer}>
-          <Text style={styles.label}>Grade:</Text>
-          <Text style={styles.value}>{data?.grade ?? "-"}</Text>
-        </View>
-      </ScrollView>
-    </SafeScreen>
+    <ScrollView style={styles.container}>
+      <View style={styles.resultContainer}>
+        <Image
+          style={styles.candidateImage}
+          source={{
+            uri: data?.photo
+              ? data?.photo
+              : "https://static.vecteezy.com/system/resources/previews/004/991/321/original/picture-profile-icon-male-icon-human-or-people-sign-and-symbol-vector.jpg",
+          }} // Replace with your profile image URL
+        />
+        <Text style={styles.resultTitle}>{data?.name}</Text>
+        <Text style={styles.candidateName}>Email: {data?.email ?? "-"}</Text>
+        <Text style={[styles.candidateName, { marginTop: 10 }]}>
+          Tanggal Lahir:{" "}
+          {data?.dob ? dayjs(data?.dob).format("DD MMM YYYY") : "-"}
+        </Text>
+
+        <Text style={[styles.candidateName, { marginTop: 10 }]}>
+          NISN:
+          {data?.nisn ?? "-"}
+        </Text>
+        <Text style={[styles.candidateName, { marginTop: 10 }]}>
+          Alamat:
+          {data?.address ?? "-"}
+        </Text>
+
+        <Text style={[styles.candidateName, { marginTop: 10 }]}>
+          Kelas:
+          {data?.grade ?? "-"}
+        </Text>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 20,
-    paddingTop: 40,
-  },
-  detailContainer: {
-    flexDirection: "row",
-    marginBottom: 10,
-  },
-  label: {
-    fontSize: 16,
-    color: "#333",
     flex: 1,
+    backgroundColor: "#f2f2f2",
   },
-  value: {
+  resultContainer: {
+    padding: 20,
+    // backgroundColor: "white",
+    borderRadius: 10,
+    // shadowColor: "#000",
+    // shadowOffset: { width: 0, height: 2 },
+    // shadowOpacity: 0.3,
+    // shadowRadius: 3,
+    // elevation: 5,
+  },
+  resultTitle: {
+    color: "black",
+    fontSize: 22,
+    fontWeight: "bold",
+    marginVertical: 20,
+  },
+  candidateImage: {
+    width: "auto",
+    height: 300,
+  },
+  candidateName: {
+    color: "black",
+    flex: 1,
     fontSize: 16,
-    color: "#666",
-    flex: 2,
+    fontWeight: "500",
+    lineHeight: 20,
+  },
+
+  buttonContainer: {
+    padding: 20,
+    // alignItems: "center",
+  },
+
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.5)",
+  },
+  modalView: {
+    gap: 30,
+    width: 300,
+    backgroundColor: "white",
+    borderRadius: 10,
+    padding: 20,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
 });

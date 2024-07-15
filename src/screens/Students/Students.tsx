@@ -50,7 +50,7 @@ function Students({ navigation }: ApplicationScreenProps<"Students">) {
 
   return (
     <>
-      {isLoading && <Text>Loading...</Text>}
+      {/* {isLoading && <Text>Loading...</Text>} */}
       {isError && <Text>Error loading data</Text>}
 
       <SearchBar

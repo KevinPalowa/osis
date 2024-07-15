@@ -16,7 +16,9 @@ function Header() {
       <View style={styles.profileContainer}>
         <Image
           style={styles.profileImage}
-          source={{ uri: "https://via.placeholder.com/50" }} // Replace with your profile image URL
+          source={{
+            uri: "https://static.vecteezy.com/system/resources/previews/004/991/321/original/picture-profile-icon-male-icon-human-or-people-sign-and-symbol-vector.jpg",
+          }} // Replace with your profile image URL
         />
         <Text style={styles.profileName}>{user?.name}</Text>
       </View>

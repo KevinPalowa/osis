@@ -25,7 +25,10 @@ export default function Detail({
   const id = route.params.id;
   const [modalVisible, setModalVisible] = useState(false);
   const queryClient = useQueryClient();
-  const { user } = useAuth();
+
+  const user = storage.getString("user")
+    ? JSON.parse(storage.getString("user"))
+    : null;
   const { data } = useQuery({
     queryKey: ["candidate", id],
     queryFn: () => getCandidate(id),
@@ -42,6 +45,11 @@ export default function Detail({
   const { mutate: doDelete } = useMutation({
     mutationFn: deleteCandidate,
   });
+  console.log(
+    !user?.isVoted && user?.role === "STUDENT",
+    user?.isVoted,
+    user?.role === "STUDENT"
+  );
   return (
     <ScrollView style={styles.container}>
       <View style={styles.resultContainer}>
@@ -50,13 +58,16 @@ export default function Detail({
           source={{
             uri: data?.user.photo
               ? data?.user.photo
-              : "https://via.placeholder.com/300",
+              : "https://static.vecteezy.com/system/resources/previews/004/991/321/original/picture-profile-icon-male-icon-human-or-people-sign-and-symbol-vector.jpg",
           }} // Replace with your profile image URL
         />
         <Text style={styles.resultTitle}>{data?.user?.name}</Text>
         <Text style={styles.candidateName}>VISI: {data?.visi ?? "-"}</Text>
         <Text style={[styles.candidateName, { marginTop: 10 }]}>
           MISI: {data?.misi ?? "-"}
+        </Text>
+        <Text style={[styles.candidateName, { marginTop: 10 }]}>
+          Biografi: {data?.biography ?? "-"}
         </Text>
       </View>
       {!user?.isVoted && user?.role === "STUDENT" && (

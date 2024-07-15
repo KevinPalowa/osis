@@ -2,8 +2,8 @@ import { storage } from "@/App";
 import { useNavigation } from "@react-navigation/native";
 import ky from "ky";
 
-const prefixUrl = `http://10.0.2.2:3000/`;
-// const prefixUrl = `https://osis-be-production.up.railway.app/`;
+// const prefixUrl = `http://10.0.2.2:3000/`;
+const prefixUrl = `https://osis-be-production.up.railway.app/`;
 
 
 export const instance = ky.extend({

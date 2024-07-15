@@ -48,7 +48,11 @@ function Home({ navigation }: ApplicationScreenProps<"Homepage">) {
           >
             <Image
               style={styles.image}
-              source={{ uri: "https://via.placeholder.com/150" }} // Replace with your card image URL
+              source={{
+                uri: e.item.user.photo
+                  ? e.item.user.photo
+                  : "https://static.vecteezy.com/system/resources/previews/004/991/321/original/picture-profile-icon-male-icon-human-or-people-sign-and-symbol-vector.jpg",
+              }} // Replace with your card image URL
             />
             <Text style={styles.title}>
               {e.index + 1}. {e.item.user.name}
@@ -99,7 +103,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   title: {
-    color:'black',
+    color: "black",
     textAlign: "center",
     fontSize: 16,
     fontWeight: "bold",

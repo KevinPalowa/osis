@@ -14,7 +14,6 @@ const getCandidates = async () => {
 
 const getCandidate = async (id: number) => {
   const response = await instance.get(`candidates/${id}`).json();
-  console.log(response)
   return candidateSchema.parse(response);
 };
 
