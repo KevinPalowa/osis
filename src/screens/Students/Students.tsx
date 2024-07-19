@@ -77,7 +77,11 @@ function Students({ navigation }: ApplicationScreenProps<"Students">) {
           >
             <Image
               style={styles.cardImage}
-              source={{ uri: "https://via.placeholder.com/150" }} // Replace with your card image URL
+              source={{
+                uri: item.photo
+                  ? item.photo
+                  : "https://static.vecteezy.com/system/resources/previews/004/991/321/original/picture-profile-icon-male-icon-human-or-people-sign-and-symbol-vector.jpg",
+              }} // Replace with your card image URL
             />
             <Text style={styles.cardTitle}>{item.name}</Text>
           </TouchableOpacity>
