@@ -33,12 +33,12 @@ function Login({ navigation }: ApplicationScreenProps<"Login">) {
   return (
     <SafeScreen>
       <View style={[gutters.marginTop_40]}>
+        <View style={styles.logoContainer}>
+          <Brand height={100} width={100} />
+        </View>
         <View style={styles.header}>
           <Text style={styles.welcomeText}>Selamat Datang di</Text>
           <Text style={styles.welcomeText}>pemilihan OSIS</Text>
-        </View>
-        <View style={styles.logoContainer}>
-          <Brand height={100} width={100} />
         </View>
         <View style={styles.formContainer}>
           <Text style={styles.label}>Email</Text>
