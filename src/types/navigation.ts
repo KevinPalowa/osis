@@ -10,6 +10,7 @@ export type ApplicationStackParamList = {
   Startup: undefined;
   Login: undefined;
   Students: undefined;
+  Schools: undefined;
   AddStudents: undefined;
   AddCandidate: undefined;
   Result: undefined;
@@ -20,7 +21,6 @@ export type ApplicationStackParamList = {
   Camera: { type?: TypeEnum };
   Success: { type?: TypeEnum };
 };
-
 
 export type ApplicationScreenProps<
   K extends keyof ApplicationStackParamList = never

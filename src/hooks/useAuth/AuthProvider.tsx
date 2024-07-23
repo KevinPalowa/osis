@@ -15,7 +15,11 @@ interface AuthContextType {
   isLoggedIn: boolean;
   isLoading: boolean;
   user: User | null;
-  login: (data: { username: string; password: string }) => Promise<boolean>;
+  login: (data: {
+    username: string;
+    password: string;
+    schoolId: number;
+  }) => Promise<boolean>;
   logout: () => void;
 }
 
@@ -42,12 +46,20 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
       setUser(JSON.parse(user));
     }
   }, [storage.getString("user")]);
-  const login = async (data: { username: string; password: string }) => {
+  const login = async (data: {
+    username: string;
+    password: string;
+    schoolId: number;
+  }) => {
     try {
       setIsLoading(true);
       const resp: { token: string; data: any } = await instance
         .post("login", {
-          json: { email: data.username, password: data.password },
+          json: {
+            email: data.username,
+            password: data.password,
+            schoolId: data.schoolId,
+          },
         })
         .json();
       storage.set("isLoggedIn", true);
@@ -58,6 +70,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
       setUser(resp.data);
       return true;
     } catch (error) {
+      setIsLoading(false);
       console.log(error);
       Alert.alert(
         "Invalid credentials",

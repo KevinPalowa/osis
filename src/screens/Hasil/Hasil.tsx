@@ -23,18 +23,16 @@ export default function Hasil() {
       0,
       7
     );
-
-  const data3 = data
-    ? data?.candidates
-        .filter((e) => e.votes > 0)
-        .map((candidate) => ({
-          key: candidate.candidateId,
-          value: candidate.votes,
-          percentage: Math.round((candidate.votes / data?.usedVotes) * 100),
-          label: candidate.candidateName,
-          svg: { fill: randomColor() },
-        }))
+  const data2 = data
+    ? data?.candidates.map((candidate) => ({
+        key: candidate.candidateId,
+        value: candidate.votes,
+        percentage: Math.round((candidate.votes / data?.usedVotes) * 100),
+        label: candidate.candidateName,
+        svg: { fill: randomColor() },
+      }))
     : [];
+  const data3 = data2?.filter((e) => e.value > 0);
 
   const Labels = ({ slices }) => {
     return slices.map((slice, index) => {
@@ -76,7 +74,7 @@ export default function Hasil() {
           <Labels />
         </PieChart>
         <View style={styles.legend}>
-          {data3.map((item) => (
+          {data2.map((item) => (
             <View key={item.key} style={styles.legendItem}>
               <View
                 style={[

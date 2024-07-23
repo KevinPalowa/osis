@@ -16,6 +16,7 @@ import Header from "@/components/molecules/Header/Header";
 import AddStudents from "@/screens/AddStudents/AddStudents";
 import AddCandidate from "@/screens/AddCandidate/AddCandidate";
 import StudentDetail from "@/screens/StudentDetail/StudentDetail";
+import Schools from "@/screens/Schools/Schools";
 const Stack = createStackNavigator<ApplicationStackParamList>();
 const Tab = createBottomTabNavigator<ApplicationStackParamList>();
 function HomeTabs() {
@@ -26,27 +27,31 @@ function HomeTabs() {
         headerShown: false,
       }}
     >
-      <Tab.Screen
-        name="Homepage"
-        component={Home}
-        options={{
-          tabBarLabel: "Home",
-          tabBarIcon: ({ color, size, focused }) => (
-            <FontAwesome name={"home"} color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Result"
-        component={Hasil}
-        options={{
-          tabBarLabel: "Hasil",
-          tabBarIcon: ({ color, size, focused }) => (
-            <Entypo name={"megaphone"} color={color} size={size} />
-          ),
-        }}
-      />
-      {user?.role === "ADMIN" && (
+      {user?.role !== "SUPERADMIN" && (
+        <Tab.Screen
+          name="Homepage"
+          component={Home}
+          options={{
+            tabBarLabel: "Home",
+            tabBarIcon: ({ color, size, focused }) => (
+              <FontAwesome name={"home"} color={color} size={size} />
+            ),
+          }}
+        />
+      )}
+      {user?.role !== "SUPERADMIN" && (
+        <Tab.Screen
+          name="Result"
+          component={Hasil}
+          options={{
+            tabBarLabel: "Hasil",
+            tabBarIcon: ({ color, size, focused }) => (
+              <Entypo name={"megaphone"} color={color} size={size} />
+            ),
+          }}
+        />
+      )}
+      {(user?.role === "ADMIN") && (
         <Tab.Screen
           name="Students"
           component={Students}
@@ -54,6 +59,19 @@ function HomeTabs() {
             tabBarLabel: "Siswa",
             tabBarIcon: ({ color, size, focused }) => (
               <FontAwesome6 name={"clipboard-user"} color={color} size={size} />
+            ),
+          }}
+        />
+      )}
+
+      {user?.role === "SUPERADMIN" && (
+        <Tab.Screen
+          name="Schools"
+          component={Schools}
+          options={{
+            tabBarLabel: "Sekolah",
+            tabBarIcon: ({ color, size, focused }) => (
+              <FontAwesome6 name={"school"} color={color} size={size} />
             ),
           }}
         />

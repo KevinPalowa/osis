@@ -1,9 +1,6 @@
 import { storage } from "@/App";
-import { useAuth } from "@/hooks/useAuth/useAuth";
 import { deleteCandidate, getCandidate, postVote } from "@/services/candidate";
 import { ApplicationScreenProps } from "@/types/navigation";
-import { meScheme } from "@/types/schemas/user";
-import { NavigationContainer } from "@react-navigation/native";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 import {

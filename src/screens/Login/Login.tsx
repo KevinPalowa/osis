@@ -11,16 +11,28 @@ import { useAuth } from "@/hooks/useAuth/useAuth";
 import SendImage from "@/theme/assets/images/send.png";
 import ColorsWatchImage from "@/theme/assets/images/colorswatch.png";
 import TranslateImage from "@/theme/assets/images/translate.png";
+import RNPickerSelect from "react-native-picker-select";
+import { useQuery } from "@tanstack/react-query";
+import { getSchoolsAll } from "@/services/school"; // Import the new fetch function
 
 function Login({ navigation }: ApplicationScreenProps<"Login">) {
-  const { control, handleSubmit } = useForm<{
+  const { control, handleSubmit, setValue, watch } = useForm<{
     username: string;
     password: string;
+    schoolId: number;
   }>();
   const { gutters, fonts } = useTheme();
   const { login, isLoading } = useAuth();
-  console.log(isLoading);
   const [isPasswordVisible, setPasswordVisible] = useState(false);
+
+  const {
+    data: schools,
+    error,
+    isLoading: isFetchingSchools,
+  } = useQuery({ queryKey: ["school"], queryFn: getSchoolsAll });
+
+  if (isFetchingSchools) return <Text>Loading...</Text>;
+  if (error) return <Text>Error fetching schools</Text>;
 
   if (
     !isImageSourcePropType(SendImage) ||
@@ -41,6 +53,18 @@ function Login({ navigation }: ApplicationScreenProps<"Login">) {
           <Text style={styles.welcomeText}>pemilihan OSIS</Text>
         </View>
         <View style={styles.formContainer}>
+          <Text style={styles.label}>Sekolah</Text>
+          <RNPickerSelect
+            onValueChange={(value) => setValue("schoolId", value)}
+            items={
+              schools?.map((school) => ({
+                label: school.name,
+                value: school.id,
+              })) ?? []
+            }
+            style={pickerSelectStyles}
+            placeholder={{ label: "Pilih Sekolah Anda", value: null }}
+          />
           <Text style={styles.label}>Email</Text>
           <Input
             control={control}
@@ -50,7 +74,6 @@ function Login({ navigation }: ApplicationScreenProps<"Login">) {
             style={styles.input}
           />
           <Text style={styles.label}>Password</Text>
-
           <Input
             control={control}
             name="password"
@@ -159,6 +182,27 @@ const styles = StyleSheet.create({
   footer: {
     alignItems: "center",
     marginTop: 20,
+  },
+});
+
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    color: "black",
+    height: 40,
+    borderColor: "#ddd",
+    borderWidth: 1,
+    marginBottom: 15,
+    paddingHorizontal: 10,
+    borderRadius: 4,
+  },
+  inputAndroid: {
+    color: "black",
+    height: 40,
+    borderColor: "#ddd",
+    borderWidth: 1,
+    marginBottom: 15,
+    paddingHorizontal: 10,
+    borderRadius: 4,
   },
 });
 

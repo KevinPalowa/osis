@@ -8,6 +8,7 @@ import {
   FlatList,
   Dimensions,
   View,
+  Button,
 } from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { ApplicationScreenProps } from "@/types/navigation";
@@ -28,6 +29,15 @@ function Home({ navigation }: ApplicationScreenProps<"Homepage">) {
   };
   return (
     <>
+      <View style={{ paddingHorizontal: 15, marginTop: 10 }}>
+        <Button
+          title={"Tambah Kandidat"}
+          color="#0D860Dff"
+          onPress={() => {
+            navigation.navigate("AddCandidate");
+          }}
+        />
+      </View>
       <FlatList
         ListHeaderComponent={
           <Text style={styles.title}>Daftar Kandidat OSIS</Text>
@@ -64,7 +74,7 @@ function Home({ navigation }: ApplicationScreenProps<"Homepage">) {
         }
       />
 
-      <FAB
+      {/* <FAB
         color="#0D860Dff"
         title={<MaterialIcons name="add" size={15} color="white" />}
         visible={user?.role === "ADMIN"}
@@ -72,7 +82,7 @@ function Home({ navigation }: ApplicationScreenProps<"Homepage">) {
         onPress={() => {
           navigation.navigate("AddCandidate");
         }}
-      />
+      /> */}
     </>
   );
 }

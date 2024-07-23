@@ -1333,6 +1333,11 @@
 "@react-native-masked-view/masked-view@^0.3.1":
   version "0.3.1"
 
+"@react-native-picker/picker@^2.4.0", "@react-native-picker/picker@^2.7.7":
+  version "2.7.7"
+  resolved "https://registry.npmjs.org/@react-native-picker/picker/-/picker-2.7.7.tgz"
+  integrity sha512-CTHthVmx8ujlH/u5AnxLQfsheh/DoEbo+Kbx0HGTlbKVLC1eZ4Kr9jXIIUcwB7JEgOXifdZIPQCsoTc/7GQ0ag==
+
 "@react-native/assets-registry@0.73.1":
   version "0.73.1"
 
@@ -4139,6 +4144,11 @@ lodash.isequal@^4.5.0:
   resolved "https://registry.npmjs.org/lodash.isequal/-/lodash.isequal-4.5.0.tgz"
   integrity sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==
 
+lodash.isobject@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.npmjs.org/lodash.isobject/-/lodash.isobject-3.0.2.tgz"
+  integrity sha512-3/Qptq2vr7WeJbB4KHUSKlq8Pl7ASXi3UG6CMbBm8WRtXi8+GHm7mKaU3urfpSEzWe2wCIChs6/sdocUsTKJiA==
+
 lodash.merge@^4.6.2:
   version "4.6.2"
 
@@ -4849,6 +4859,14 @@ react-native-image-picker@^7.1.2:
 react-native-mmkv@^2.12.2:
   version "2.12.2"
 
+react-native-picker-select@^9.1.3:
+  version "9.1.3"
+  resolved "https://registry.npmjs.org/react-native-picker-select/-/react-native-picker-select-9.1.3.tgz"
+  integrity sha512-O2EmlY4Mg5fZWxECTQJBDhO61as6RDbPYYiNoryaa0gmIkWxhANLsZI+ElEVru1h0Fp9UlCFtBDI5MwhHR9AxA==
+  dependencies:
+    lodash.isequal "^4.5.0"
+    lodash.isobject "^3.0.2"
+
 react-native-progress@^5.0.1:
   version "5.0.1"
   resolved "https://registry.npmjs.org/react-native-progress/-/react-native-progress-5.0.1.tgz"
@@ -4897,6 +4915,11 @@ react-native-size-matters@^0.3.1:
   resolved "https://registry.npmjs.org/react-native-size-matters/-/react-native-size-matters-0.3.1.tgz"
   integrity sha512-mKOfBLIBFBcs9br1rlZDvxD5+mAl8Gfr5CounwJtxI6Z82rGrMO+Kgl9EIg3RMVf3G855a85YVqHJL2f5EDRlw==
 
+react-native-snackbar@^2.6.2:
+  version "2.6.2"
+  resolved "https://registry.npmjs.org/react-native-snackbar/-/react-native-snackbar-2.6.2.tgz"
+  integrity sha512-edAubZJiBowwQUXJV5oXbMqitQ9vw7JzWUCczeTPVo6lRa+FzsUjiCQBHdWBbCw/N8/Q7jgKg4juNXU/bXZdXg==
+
 react-native-svg-charts@^5.4.0:
   version "5.4.0"
   resolved "https://registry.npmjs.org/react-native-svg-charts/-/react-native-svg-charts-5.4.0.tgz"
@@ -4935,7 +4958,7 @@ react-native-vector-icons@^10.1.0, react-native-vector-icons@>7.0.0:
 react-native-vision-camera@^4.0.3:
   version "4.0.3"
 
-react-native@*, react-native@>=0.46.0, react-native@>=0.50.0, react-native@>=0.57, react-native@>=0.59, react-native@>=0.71.0, react-native@0.73.7:
+react-native@*, react-native@>=0.46.0, react-native@>=0.50.0, react-native@>=0.57, react-native@>=0.59, react-native@>=0.60, react-native@>=0.71.0, react-native@0.73.7:
   version "0.73.7"
   dependencies:
     "@jest/create-cache-key-function" "^29.6.3"

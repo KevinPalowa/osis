@@ -67,6 +67,17 @@ function Students({ navigation }: ApplicationScreenProps<"Students">) {
         data={data?.data}
         numColumns={2}
         columnWrapperStyle={styles.row}
+        ListHeaderComponent={
+          <View style={{ paddingHorizontal: 15, marginTop: 10 }}>
+            <Button
+              title={"Tambah Siswa"}
+              color="#0D860Dff"
+              onPress={() => {
+                navigation.navigate("AddStudents");
+              }}
+            />
+          </View>
+        }
         renderItem={({ item }) => (
           <TouchableOpacity
             style={styles.card}
@@ -114,14 +125,14 @@ function Students({ navigation }: ApplicationScreenProps<"Students">) {
         )}
       />
 
-      <FAB
+      {/* <FAB
         title={<MaterialIcons name="add" size={15} color="white" />}
         placement="right"
         color="#0D860Dff"
         onPress={() => {
           navigation.navigate("AddStudents");
         }}
-      />
+      /> */}
     </>
   );
 }
