@@ -19,6 +19,7 @@ import { FAB } from "react-native-elements";
 const { width } = Dimensions.get("window");
 function Home({ navigation }: ApplicationScreenProps<"Homepage">) {
   const { user } = useAuth();
+
   const { data, isPending, refetch } = useQuery({
     queryKey: ["candidates"],
     queryFn: getCandidates,
@@ -30,13 +31,15 @@ function Home({ navigation }: ApplicationScreenProps<"Homepage">) {
   return (
     <>
       <View style={{ paddingHorizontal: 15, marginTop: 10 }}>
-        <Button
-          title={"Tambah Kandidat"}
-          color="#0D860Dff"
-          onPress={() => {
-            navigation.navigate("AddCandidate");
-          }}
-        />
+        {user?.role === "ADMIN" && (
+          <Button
+            title={"Tambah Kandidat"}
+            color="#0D860Dff"
+            onPress={() => {
+              navigation.navigate("AddCandidate");
+            }}
+          />
+        )}
       </View>
       <FlatList
         ListHeaderComponent={
